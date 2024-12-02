@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Password Manager</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    .container {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+      width: 250px;
+    }
+    input[type="text"], input[type="number"], input[type="range"] {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    input[type="number"] {
+      width: 60px;
+      margin-left: 10px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 4px;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    button i {
+      margin-right: 8px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .checkbox-container {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+    }
+    .slider-container {
+      display: flex;
+      align-items: center;
+    }
+    .copied-message {
+      color: green;
+      display: none;
+      text-align: center;
+      margin-top: 10px;
+    }
+    .strength-bar {
+      height: 10px;
+      width: 100%;
+      background-color: #ddd;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+    .strength-bar-inner {
+      height: 100%;
+      border-radius: 4px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      display: none;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Password Manager</h1>
+    <input type="text" id="id" placeholder="ID (e.g., admin)">
+    <input type="text" id="password" placeholder="Generated Password">
+    <div class="slider-container">
+      <input type="range" id="length-slider" min="1" max="32" value="12">
+      <input type="number" id="length-value" min="1" max="32" value="12">
+    </div>
+    <div class="checkbox-container">
+      <label>
+        <input type="checkbox" id="include-numbers" checked> Include Numbers
+      </label>
+      <label>
+        <input type="checkbox" id="include-symbols" checked> Include Symbols
+      </label>
+    </div>
+    <div class="strength-bar">
+      <div id="strength-bar-inner" class="strength-bar-inner"></div>
+    </div>
+    <button id="generate"><i class="fas fa-key"></i>Generate Password</button>
+    <button id="save"><i class="fas fa-save"></i>Save Password</button>
+    <button id="retrieve"><i class="fas fa-list"></i>Retrieve Passwords</button>
+    <div id="passwords-list">
+      <table id="passwords-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Password</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Passwords will be inserted here -->
+        </tbody>
+      </table>
+    </div>
+    <div id="copied-message" class="copied-message">Copied!</div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
